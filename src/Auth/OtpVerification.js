@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { StyleSheet, Text, TextInput, View } from "react-native";
-import TocButton from "../component/TocButton";
+import TocButton from "../Componnets/Toc";
 
 export default function OtpVerification({ length = 4 }) {
   const [otp, setOtp] = useState(Array(length).fill(""));
@@ -71,7 +71,7 @@ export default function OtpVerification({ length = 4 }) {
         title="Submit OTP"
         onPress={handleSubmitOtp}
         disabled={!isOtpComplete()}
-        backgroundColor={"#6699cc"}
+        backgroundColor={"#7ed957"}
       />
     </View>
   );
@@ -98,11 +98,12 @@ const styles = StyleSheet.create({
     marginBottom: 40,
   },
   inputStyle: {
-    borderWidth: 1,
+    borderWidth: 2,
     width: 40,
     textAlign: "center",
     fontSize: 20,
     borderRadius: 10,
-    borderColor: "grey",
+
+    borderColor: "#7ed957",
   },
 });

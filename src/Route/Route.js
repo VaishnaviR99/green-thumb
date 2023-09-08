@@ -6,6 +6,7 @@ import Welcome from "../Auth/Welcome";
 import Login from "../Componnets/Login";
 import Signup from "../Componnets/Signup";
 import Home from "../Componnets/Home";
+import OtpVerification from "../Auth/OtpVerification";
 
 const Stack = createNativeStackNavigator();
 
@@ -30,6 +31,11 @@ export default function Route() {
           options={{ headerShown: false }}
         />
         <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen
+          name="Otp"
+          component={OtpVerification}
+          options={{ headerShown: false }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -1,21 +1,14 @@
 import React, { useState } from "react";
-import {
-  Text,
-  View,
-  StyleSheet,
-  ImageBackground,
-  Image,
-  KeyboardAvoidingView,
-} from "react-native";
+import { Text, View, StyleSheet, ImageBackground, Image } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import { SafeAreaView } from "react-native";
+
 import { FontAwesome } from "@expo/vector-icons";
 import { Input } from "@rneui/themed";
 import TocButton from "../Componnets/Toc";
 import { OTP_URL } from "../constants/constants";
 import { NUMBER_PATTERN } from "../constants/constants";
 
-const Login = () => {
+const Login = ({ navigation }) => {
   const [number, setNumber] = useState("");
 
   const handleNumber = (data) => {
@@ -23,14 +16,14 @@ const Login = () => {
       const userNumber = data;
       setNumber(userNumber);
     }
-    if (data.length === 10) {
-      if (!NUMBER_PATTERN.test(data)) {
-        alert("Pattern Enter Number Only!");
-      }
-    }
+    // if (data.length === 10) {
+    //   if (!NUMBER_PATTERN.test(data)) {
+    //     alert("Pattern Enter Number Only!");
+    //   }
+    // }
   };
   const handleSubmit = () => {
-    navigation.navigate(OTP_URL);
+    navigation.navigate("Otp");
   };
 
   return (
@@ -47,6 +40,8 @@ const Login = () => {
 
           <Input
             placeholder="Enter your phone number"
+            placeholderTextColor="white"
+            inputStyle={{ color: "white", fontSize: 25 }}
             keyboardType="numeric"
             maxLength={10}
             leftIcon={
@@ -60,7 +55,7 @@ const Login = () => {
             <TocButton
               title="Get OTP"
               onPress={handleSubmit}
-              backgroundColor={"tomato"}
+              backgroundColor={"#7ed957"}
             />
           ) : null}
         </KeyboardAwareScrollView>
@@ -83,7 +78,7 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   logo: {
-    width: "50%",
+    width: "70%",
     resizeMode: "contain",
     alignSelf: "center",
     //marginBottom: 10,
@@ -114,11 +109,12 @@ const styles = StyleSheet.create({
     color: "#6aa81a",
     //borderWidth: 1,
     //borderColor: "#6aa81a",
-    width: 300,
+    width: 280,
     marginTop: 50,
   },
   icon: {
-    marginRight: 10,
+    marginRight: 18,
+    marginLeft: 5,
     color: "#7ed957",
   },
 });
