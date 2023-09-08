@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Text, View, StyleSheet, ImageBackground, Image } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
@@ -10,6 +10,12 @@ import { NUMBER_PATTERN } from "../constants/constants";
 
 const Login = ({ navigation }) => {
   const [number, setNumber] = useState("");
+
+  useEffect(() => {
+    setTimeout(() => {
+      navigation.navigate("Home");
+    }, 5000);
+  }, []);
 
   const handleNumber = (data) => {
     if (NUMBER_PATTERN.test(data) || data.length === 0) {
@@ -40,8 +46,8 @@ const Login = ({ navigation }) => {
 
           <Input
             placeholder="Enter your phone number"
-            placeholderTextColor="white"
-            inputStyle={{ color: "white", fontSize: 25 }}
+            placeholderTextColor="gray"
+            inputStyle={{ color: "white", fontSize: 22 }}
             keyboardType="numeric"
             maxLength={10}
             leftIcon={
@@ -109,11 +115,11 @@ const styles = StyleSheet.create({
     color: "#6aa81a",
     //borderWidth: 1,
     //borderColor: "#6aa81a",
-    width: 280,
+    width: 350,
     marginTop: 50,
   },
   icon: {
-    marginRight: 18,
+    marginRight: 15,
     marginLeft: 5,
     color: "#7ed957",
   },

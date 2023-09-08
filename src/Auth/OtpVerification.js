@@ -1,5 +1,11 @@
 import React, { useRef, useState } from "react";
-import { StyleSheet, Text, TextInput, View } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+  TouchableOpacity,
+} from "react-native";
 import TocButton from "../Componnets/Toc";
 
 export default function OtpVerification({ length = 4 }) {
@@ -105,5 +111,23 @@ const styles = StyleSheet.create({
     borderRadius: 10,
 
     borderColor: "#7ed957",
+  },
+  buttonContainer: {
+    width: "80%",
+    paddingVertical: 10,
+    borderRadius: 6,
+    alignSelf: "center",
+    backgroundColor: "#2089dc",
+  },
+  enabledBackground: {
+    backgroundColor: "#2089dc",
+  },
+  disabledBackground: {
+    backgroundColor: "#e5e5e5",
+  },
+  textt: {
+    textAlign: "center",
+    color: "white",
+    fontSize: 20,
   },
 });
