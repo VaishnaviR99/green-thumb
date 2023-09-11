@@ -11,11 +11,11 @@ import { NUMBER_PATTERN } from "../constants/constants";
 const Login = ({ navigation }) => {
   const [number, setNumber] = useState("");
 
-  useEffect(() => {
-    setTimeout(() => {
-      navigation.navigate("Home");
-    }, 5000);
-  }, []);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     navigation.navigate("Home");
+  //   }, 5000);
+  // }, []);
 
   const handleNumber = (data) => {
     if (NUMBER_PATTERN.test(data) || data.length === 0) {
