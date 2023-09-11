@@ -16,6 +16,7 @@ const BottomTab = () => {
       initialRouteName="Home"
       activeColor="#7ed957"
       shifting={true}
+
       //barStyle={{ backgroundColor: "#f7f3de" }}
     >
       <Tab.Screen

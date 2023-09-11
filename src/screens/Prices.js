@@ -13,19 +13,19 @@ import {
 const ProductList = ({ product }) => {
   return (
     <View style={styles.productContainer}>
-      <View style={styles.productHeader}>
-        <Image
-          source={require("../assets/Tlogo.png")}
-          style={styles.productImage}
+      <View style={styles.wholeCard}>
+        <View style={styles.productHeader}>
+          <Image source={product.productImage} style={styles.productImage} />
+          <Text style={styles.productName}>{product.product}</Text>
+        </View>
+
+        <FlatList
+          data={product.prices}
+          keyExtractor={(item, index) => index.toString()}
+          renderItem={({ item }) => <PriceCard product={item} />}
+          horizontal
         />
-        <Text style={styles.productName}>{product.product}</Text>
       </View>
-      <FlatList
-        data={product.prices}
-        keyExtractor={(item, index) => index.toString()}
-        renderItem={({ item }) => <PriceCard product={item} />}
-        horizontal
-      />
     </View>
   );
 };
@@ -45,18 +45,20 @@ export default Prices;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 16,
   },
-  headerImage: {
-    width: "100%",
-    height: 200,
-    resizeMode: "cover",
+  productContainer: {
+    padding: 5,
   },
-  headerText: {
-    fontSize: 24,
-    fontWeight: "bold",
-    marginTop: 16,
+  wholeCard: {
+    backgroundColor: "white",
+    padding: 9,
   },
+  productHeader: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 20,
+  },
+
   card: {
     backgroundColor: "#FFFFFF",
     borderRadius: 8,
@@ -65,15 +67,16 @@ const styles = StyleSheet.create({
     width: 250,
   },
   productImage: {
-    width: "100%",
-    height: 150,
-    resizeMode: "cover",
-    borderRadius: 8,
+    width: 50,
+    height: 50,
+    resizeMode: "contain",
+    borderRadius: 40,
   },
   productName: {
-    fontSize: 18,
+    fontSize: 15,
     fontWeight: "bold",
     marginVertical: 8,
+    color: "gray",
   },
   priceCard: {
     borderWidth: 1,
@@ -99,6 +102,9 @@ const data = {
   data: [
     {
       product: "Apple",
+      productImage: {
+        uri: "https://5.imimg.com/data5/SELLER/Default/2021/8/YN/SE/FV/72826034/red-apple.jpg",
+      },
       prices: [
         {
           city: "Ganuar",
@@ -128,6 +134,9 @@ const data = {
     },
     {
       product: "Mango",
+      productImage: {
+        uri: "https://4.imimg.com/data4/EX/IX/MY-26971534/alphonso-mango1.jpg",
+      },
       prices: [
         {
           city: "Ganuar",
@@ -157,6 +166,9 @@ const data = {
     },
     {
       product: "Orange",
+      productImage: {
+        uri: "https://img.freepik.com/premium-photo/orange-crop-isolated_90839-212.jpg?w=2000",
+      },
       prices: [
         {
           city: "Ganuar",
@@ -186,6 +198,9 @@ const data = {
     },
     {
       product: "Rice",
+      productImage: {
+        uri: "https://cdn.britannica.com/17/176517-050-6F2B774A/Pile-uncooked-rice-grains-Oryza-sativa.jpg",
+      },
       prices: [
         {
           city: "Ganuar",
@@ -215,6 +230,9 @@ const data = {
     },
     {
       product: "Wheat",
+      productImage: {
+        uri: "https://www.bayrakagro.com/wp-content/uploads/2019/10/wheat-960x720.jpg",
+      },
       prices: [
         {
           city: "Ganuar",
@@ -244,6 +262,9 @@ const data = {
     },
     {
       product: "Corn",
+      productImage: {
+        uri: "https://m.media-amazon.com/images/I/41F62-VbHSL._AC_UF1000,1000_QL80_.jpg",
+      },
       prices: [
         {
           city: "Ganuar",

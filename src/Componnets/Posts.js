@@ -35,6 +35,7 @@ const PostTab = () => {
 const Postt = ({ post }) => {
   return (
     <View style={styles.card}>
+      <Image source={post.profile} />
       <Text style={styles.username}>{post.username}</Text>
       <Image source={post.image} style={styles.image} />
       <Text style={styles.caption}>{post.caption}</Text>
@@ -112,8 +113,13 @@ export default PostTab;
 const postData = [
   {
     id: 1,
-    username: "user1",
-    image: require("../assets/Tlogo.png"),
+    username: "Nagarjuna",
+    profile: {
+      uri: "https://i.pinimg.com/1200x/06/29/8d/06298d548430d752925da79fdc2f8f32.jpg",
+    },
+    image: {
+      uri: "https://img.hobbyfarms.com/wp-content/uploads/2019/03/22190424/sugarbeets-vegetable-crops-KWS-Group-Flickr.jpg",
+    },
     caption: "Beautiful sunset at the beach 🌅",
     likes: 1024,
     comments: [
@@ -131,8 +137,13 @@ const postData = [
   },
   {
     id: 2,
-    username: "user2",
-    image: require("../assets/Tlogo.png"),
+    username: "Sourabh Lowanshi",
+    profile: {
+      uri: "https://images.unsplash.com/photo-1609770653328-a4d1dd377970?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8aW5kaWFuJTIwbWFufGVufDB8fDB8fHww&w=1000&q=80",
+    },
+    image: {
+      uri: "https://gumlet.assettype.com/newslaundry%2F2023-03%2F80af77e7-bc04-4f41-9ab6-7ac5fb622644%2FAI_5_.jpg?auto=format%2Ccompress&fit=max&format=webp&w=480&dpr=2.6",
+    },
     caption: "Exploring the mountains today ⛰️",
     likes: 768,
     comments: [
@@ -150,8 +161,13 @@ const postData = [
   },
   {
     id: 3,
-    username: "user3",
-    image: require("../assets/Tlogo.png"),
+    username: "Rajat Gnagwar",
+    profile: {
+      uri: "https://i.pinimg.com/736x/5d/a8/76/5da8768c07eb3db7dbf5f394ab4444a6--indian-man-asian-men.jpg",
+    },
+    image: {
+      uri: "https://d1u4oo4rb13yy8.cloudfront.net/article/67477-kzbcuulqqr-1504449150.jpg",
+    },
     caption: "Trying out a new recipe 🍝",
     likes: 563,
     comments: [

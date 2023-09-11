@@ -1,5 +1,5 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+
+import { StyleSheet, Text, View,StatusBar } from "react-native";
 import Route from "./src/Route/Route";
 import BottomTab from "./src/Route/BottomNavigation";
 import { NavigationContainer } from "@react-navigation/native";
@@ -17,6 +17,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
+      <StatusBar/>
       <NavigationContainer>
         {auth ? <BottomTab /> : <Route />}
       </NavigationContainer>

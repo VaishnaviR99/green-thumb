@@ -11,7 +11,6 @@ import {
 const CategoryProducts = ({ route, navigation }) => {
   const { category, data } = route.params;
   const products = data.products[category.name];
-  console.log(category, data);
 
   const renderItem = ({ item }) => (
     <TouchableOpacity
@@ -22,7 +21,7 @@ const CategoryProducts = ({ route, navigation }) => {
     >
       <Image source={item.image} style={styles.productImage} />
       <Text style={styles.productName}>{item.name}</Text>
-      <Text style={styles.productPrice}>Price: ${item.price}</Text>
+      <Text style={styles.productPrice}>Price: ₹{item.price}</Text>
     </TouchableOpacity>
   );
 
@@ -33,6 +32,8 @@ const CategoryProducts = ({ route, navigation }) => {
         data={products}
         renderItem={renderItem}
         keyExtractor={(item) => item.id.toString()}
+        numColumns={2}
+        horizontal={false}
       />
     </View>
   );
@@ -42,6 +43,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
+    //justifyContent: "space-evenly",
+    //alignItems: "center",
   },
   categoryTitle: {
     fontSize: 24,
@@ -50,14 +53,18 @@ const styles = StyleSheet.create({
   },
   productCard: {
     backgroundColor: "#FFFFFF",
+    borderWidth: 1,
+    borderColor: "#ececec",
     borderRadius: 8,
+    width: "50%",
     padding: 16,
     marginVertical: 8,
+    margin: 5,
   },
   productImage: {
     width: "100%",
     height: 150,
-    resizeMode: "cover",
+    resizeMode: "contain",
     borderRadius: 8,
   },
   productName: {

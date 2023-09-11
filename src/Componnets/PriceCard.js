@@ -6,19 +6,44 @@ import {
   Image,
   StyleSheet,
 } from "react-native";
-
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import React from "react";
 
 const PriceCard = ({ product }) => {
   return (
     <View style={styles.card}>
-      <Image source={require("../assets/w3.jpg")} style={styles.productImage} />
-      <Text style={styles.productName}>{product.product}</Text>
+      
       <View style={styles.priceCard}>
         <Text style={styles.currentPrice}>₹ {product.current_price}/Q</Text>
         <Text style={styles.cityName}>{product.city}</Text>
-        <Text style={styles.priceChange}>{product.decrease_price}/Q</Text>
-        <Text style={styles.priceChange}>{product.increase_price}/Q</Text>
+        <View
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
+        >
+          <View
+            style={{
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Text style={styles.priceChange}>{product.decrease_price}/Q</Text>
+            <MaterialCommunityIcons name="arrow-down" color="red" size={16} />
+          </View>
+          <View
+            style={{
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Text style={styles.priceChange}>{product.increase_price}/Q</Text>
+            <MaterialCommunityIcons name="arrow-up" color="green" size={16} />
+          </View>
+        </View>
       </View>
     </View>
   );
@@ -42,9 +67,9 @@ const styles = StyleSheet.create({
     marginTop: 16,
   },
   card: {
-    backgroundColor: "#FFFFFF",
+    backgroundColor: "rgba(0, 255, 0, 0.03) ",
     borderRadius: 8,
-    padding: 16,
+
     margin: 8,
     width: 250,
   },
@@ -61,7 +86,7 @@ const styles = StyleSheet.create({
   },
   priceCard: {
     borderWidth: 1,
-    borderColor: "#DDDDDD",
+    borderColor: "rgba(0, 255, 0, 0.3)",
     borderRadius: 8,
     padding: 8,
   },
@@ -72,9 +97,11 @@ const styles = StyleSheet.create({
   cityName: {
     fontSize: 14,
     marginTop: 8,
+    color: "#018900",
   },
   priceChange: {
     fontSize: 14,
     marginTop: 8,
+    color:"gray",
   },
 });

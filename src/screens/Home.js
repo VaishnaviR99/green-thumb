@@ -1,22 +1,65 @@
 import React from "react";
-import { ScrollView, Text, View } from "react-native";
+import { ScrollView, Text, View, Image, Button } from "react-native";
 import Category from "../Componnets/Category";
 import Weather from "../Componnets/Weather";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import ProductC from "../Componnets/ProductC";
 import ProductDetails from "../Componnets//PrductDetails";
 import Hometab from "../Componnets/Hometab";
+import Cart from "../Componnets/Cart";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
 const Stack = createNativeStackNavigator();
-const Home = () => {
+
+const LogoTitle = () => {
+  return (
+    <View>
+      <Image
+        source={require("../assets/small_logo.png")}
+        style={{ height: 70, width: 200, resizeMode: "cover" }}
+      />
+    </View>
+  );
+};
+const Home = ({ navigation }) => {
   return (
     // <View style={{ flex: 1 }}>
-      <Stack.Navigator>
-        <Stack.Screen name="homee" component={Hometab} />
-        <Stack.Screen name="Categories" component={Category} />
-        <Stack.Screen name="CategoryProducts" component={ProductC} />
-        <Stack.Screen name="ProductDetails" component={ProductDetails} />
-      </Stack.Navigator>
+    <Stack.Navigator
+      screenOptions={{
+        headerRight: () => (
+          <View>
+            <MaterialCommunityIcons
+              name="cart"
+              color="black"
+              size={26}
+              onPress={() => navigation.navigate("Cart")}
+            />
+          </View>
+        ),
+      }}
+    >
+      <Stack.Screen
+        name="homee"
+        component={Hometab}
+        options={{
+          headerTitle: (props) => <LogoTitle {...props} />,
+          headerRight: () => (
+            <View>
+              <MaterialCommunityIcons
+                name="cart"
+                color="black"
+                size={26}
+                onPress={() => navigation.navigate("Cart")}
+              />
+            </View>
+          ),
+        }}
+      />
+      <Stack.Screen name="Categories" component={Category} />
+      <Stack.Screen name="CategoryProducts" component={ProductC} />
+      <Stack.Screen name="ProductDetails" component={ProductDetails} />
+      <Stack.Screen name="Cart" component={Cart} />
+    </Stack.Navigator>
     // </View>
   );
 };
