@@ -9,44 +9,25 @@ import {
 } from "react-native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
-const PostTab = ({ navigation }) => {
+const Articles = () => {
   return (
     <View style={styles.container}>
       <FlatList
-        data={postData}
+        data={ArticleData}
         keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => <Postt post={item} />}
+        renderItem={({ item }) => <ArticleCard article={item} />}
       />
-      <TouchableOpacity
-        style={styles.createPostButton}
-        onPress={() => navigation.navigate("CreatePost")}
-        //onPress={() => console.log("pressed")}
-      >
-        <MaterialCommunityIcons
-          name="plus"
-          size={24}
-          color="white"
-          style={styles.createPostButton}
-        />
-      </TouchableOpacity>
     </View>
   );
 };
 
-const Postt = ({ post }) => {
+const ArticleCard = ({ article }) => {
   return (
-    <View style={styles.card}>
-      <Text style={styles.username}>{post.username}</Text>
-      <Image source={post.image} style={styles.image} />
-      <Text style={styles.caption}>{post.caption}</Text>
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>Like</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>Reply</Text>
-        </TouchableOpacity>
-      </View>
+    <View style={styles.card} >
+      <Image source={article.profile} />
+      <Text style={styles.username}>{article.username}</Text>
+      <Image source={article.image} style={styles.image} />
+      <Text style={styles.caption}>{article.caption}</Text>
     </View>
   );
 };
@@ -74,7 +55,7 @@ const styles = StyleSheet.create({
   image: {
     width: "100%",
     height: 200,
-    resizeMode: "cover",
+    resizeMode: "contain",
     borderRadius: 8,
     marginBottom: 8,
   },
@@ -108,16 +89,16 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PostTab;
+export default Articles;
 
-const postData = [
+const ArticleData = [
   {
     id: 1,
-    username: "user1",
-    image: require("../assets/Tlogo.png"),
-    caption: "Beautiful sunset at the beach 🌅",
-    likes: 1024,
-    comments: [
+    image: {
+      uri: "https://www.asiafarming.com/wp-content/uploads/2016/07/Health-Benefits-Of-Apple..jpg",
+    },
+    caption: "Apple",
+    blog: [
       {
         id: 101,
         username: "user2",
@@ -132,11 +113,11 @@ const postData = [
   },
   {
     id: 2,
-    username: "user2",
-    image: require("../assets/Tlogo.png"),
-    caption: "Exploring the mountains today ⛰️",
-    likes: 768,
-    comments: [
+    image: {
+      uri: "https://img.theculturetrip.com/1200x675/wp-content/uploads/2018/03/origins-of-the-word-orange.jpg",
+    },
+    caption: "Orange",
+    blog: [
       {
         id: 201,
         username: "user1",
@@ -151,11 +132,49 @@ const postData = [
   },
   {
     id: 3,
-    username: "user3",
-    image: require("../assets/Tlogo.png"),
-    caption: "Trying out a new recipe 🍝",
-    likes: 563,
-    comments: [
+    image: {
+      uri: "https://img.etimg.com/thumb/width-640,height-480,imgsize-56196,resizemode-75,msid-95423731/magazines/panache/5-reasons-why-tomatoes-should-be-your-favourite-fruit-this-year/tomatoes-canva.jpg",
+    },
+    caption: "Tomato",
+    blog: [
+      {
+        id: 301,
+        username: "user1",
+        text: "Looks delicious!",
+      },
+      {
+        id: 302,
+        username: "user2",
+        text: "Recipe please!",
+      },
+    ],
+  },
+  {
+    id: 4,
+    image: {
+      uri: "https://s3g2u3k4.rocketcdn.me/wp-content/uploads/sites/4/2022/11/sunflower.jpg",
+    },
+    caption: "Sunflower",
+    blog: [
+      {
+        id: 301,
+        username: "user1",
+        text: "Looks delicious!",
+      },
+      {
+        id: 302,
+        username: "user2",
+        text: "Recipe please!",
+      },
+    ],
+  },
+  {
+    id: 5,
+    image: {
+      uri: "https://m.media-amazon.com/images/I/51lTK6iktYL._AC_UF1000,1000_QL80_.jpg",
+    },
+    caption: "Potato",
+    blog: [
       {
         id: 301,
         username: "user1",

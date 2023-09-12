@@ -1,12 +1,18 @@
 import React from "react";
 import { View, StyleSheet, Text } from "react-native";
-import Category from "./Category";
+import Category from "../Componnets/Category";
 
 const Hometab = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Categories</Text>
-      <Category data={data} navigation={navigation} />
+      <View style={{ flex: 1 }}>
+        <Text style={styles.text}>Categories</Text>
+        <Category data={data} navigation={navigation} />
+      </View>
+
+      <View>
+        <Text style={styles.text}>weather forcaste</Text>
+      </View>
     </View>
   );
 };
@@ -16,13 +22,12 @@ export default Hometab;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    
   },
   text: {
     fontSize: 22,
     paddingLeft: 30,
-    fontWeight:"bold"
-  }
+    fontWeight: "bold",
+  },
 });
 
 const data = {

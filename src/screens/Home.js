@@ -5,9 +5,11 @@ import Weather from "../Componnets/Weather";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import ProductC from "../Componnets/ProductC";
 import ProductDetails from "../Componnets//PrductDetails";
-import Hometab from "../Componnets/Hometab";
+import Hometab from "../Route/Hometab";
 import Cart from "../Componnets/Cart";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import Calls from "../Componnets/Call";
+import Avatarcomp from "../Componnets/Avatar";
 
 const Stack = createNativeStackNavigator();
 
@@ -16,7 +18,7 @@ const LogoTitle = () => {
     <View>
       <Image
         source={require("../assets/small_logo.png")}
-        style={{ height: 70, width: 200, resizeMode: "cover" }}
+        style={{ height: 70, width: 150, resizeMode: "cover",}}
       />
     </View>
   );
@@ -44,13 +46,34 @@ const Home = ({ navigation }) => {
         options={{
           headerTitle: (props) => <LogoTitle {...props} />,
           headerRight: () => (
-            <View>
+            <View style={{ flexDirection: "row" }}>
               <MaterialCommunityIcons
                 name="cart"
                 color="black"
-                size={26}
+                size={28}
                 onPress={() => navigation.navigate("Cart")}
               />
+
+              <MaterialCommunityIcons
+                name="phone"
+                color="green"
+                size={23}
+                onPress={() => Calls()}
+                backgroundColor="rgba(0, 255, 0, 0.03)"
+                style={{
+                  borderWidth: 1,
+                  borderRadius: 18,
+                  padding: 4,
+                  borderColor: "rgba(0, 255, 0, 0.3)",
+                  marginLeft: 15,
+                  marginRight: 5,
+                }}
+              />
+            </View>
+          ),
+          headerLeft: () => (
+            <View>
+              <Avatarcomp size={ 50} />
             </View>
           ),
         }}

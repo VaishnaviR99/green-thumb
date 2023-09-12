@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     marginTop: 16,
   },
   card: {
-    backgroundColor: "rgba(0, 255, 0, 0.03) ",
+    backgroundColor: "rgba(0, 255, 0, 0.03)",
     borderRadius: 8,
 
     margin: 8,
