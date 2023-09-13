@@ -21,25 +21,12 @@ const Category = ({ data, navigation }) => {
     </TouchableOpacity>
   );
 
-  const rows = [];
-  const categories = data.categories;
-  for (let i = 0; i < categories.length; i += 3) {
-    rows.push(categories.slice(i, i + 3));
-  }
-
   return (
     <View style={styles.container}>
       <FlatList
-        data={rows}
-        renderItem={({ item }) => (
-          <View style={styles.row}>
-            {item.map((category) => (
-              <React.Fragment key={category.id}>
-                {renderItem({ item: category })}
-              </React.Fragment>
-            ))}
-          </View>
-        )}
+        data={data.categories}
+        numColumns={3} 
+        renderItem={renderItem}
         keyExtractor={(item, index) => index.toString()}
       />
     </View>

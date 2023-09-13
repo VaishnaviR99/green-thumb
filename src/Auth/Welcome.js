@@ -32,7 +32,7 @@ const Welcome = ({ navigation }) => {
           </Text>
         </TouchableHighlight>
 
-        <View style={styles.singup}>
+        {/* <View style={styles.singup}>
           <Text style={{ color: "white", width: 170 }}>
             Don't have an account ?
           </Text>
@@ -44,7 +44,7 @@ const Welcome = ({ navigation }) => {
               Sign Up
             </Text>
           </TouchableOpacity>
-        </View>
+        </View> */}
       </View>
     </View>
   );

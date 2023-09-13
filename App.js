@@ -1,5 +1,4 @@
-
-import { StyleSheet, Text, View,StatusBar } from "react-native";
+import { StyleSheet, Text, View, StatusBar } from "react-native";
 import Route from "./src/Route/Route";
 import BottomTab from "./src/Route/BottomNavigation";
 import { NavigationContainer } from "@react-navigation/native";
@@ -10,18 +9,21 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Category from "./src/Componnets/Category";
 
 import CategoryProducts from "./src/Componnets/ProductC";
-
+import { CartProvider } from "./src/context/Context";
 const Stack = createNativeStackNavigator();
 export default function App() {
   const [auth, setAuth] = useState(true);
 
   return (
-    <View style={styles.container}>
-      <StatusBar/>
-      <NavigationContainer>
-        {auth ? <BottomTab /> : <Route />}
-      </NavigationContainer>
-    </View>
+    <CartProvider>
+      <View style={styles.container}>
+        <StatusBar />
+        <NavigationContainer>
+          {/* {auth ? <BottomTab /> : <Route />} */}
+          <Route/>
+        </NavigationContainer>
+      </View>
+    </CartProvider>
   );
 }
 

@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import TocButton from "../Componnets/Toc";
 
-export default function OtpVerification({ length = 4 , navigation}) {
+export default function OtpVerification({ length = 4, navigation }) {
   const [otp, setOtp] = useState(Array(length).fill(""));
   const otpInputs = useRef([]);
 
@@ -51,8 +51,9 @@ export default function OtpVerification({ length = 4 , navigation}) {
     if (isOtpComplete()) {
       const otpValue = otp.join("");
       alert("OTP submitted: " + otpValue);
-      navigation.navigate("Home")
-
+      setTimeout(() => {
+        navigation.navigate("HomeNavigation");
+      }, 2000);
     } else {
       alert("Please fill in all OTP fields.");
     }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   View,
   Text,
@@ -8,7 +8,7 @@ import {
   ScrollView,
 } from "react-native";
 
-const ProductDetails = ({ route }) => {
+const ProductDetails = ({ route, navigation }) => {
   const { product } = route.params;
 
   return (

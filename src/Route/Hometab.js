@@ -1,6 +1,7 @@
 import React from "react";
 import { View, StyleSheet, Text } from "react-native";
 import Category from "../Componnets/Category";
+import CustomerCare from "../Componnets/CustomerCare";
 
 const Hometab = ({ navigation }) => {
   return (

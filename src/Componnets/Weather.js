@@ -1,11 +1,11 @@
 // import React, { useEffect, useState } from "react";
-// import {
-//   View,
-//   Text,
-//   Button,
-//   StyleSheet,
-//   PermissionsAndroid,
-// } from "react-native";
+import {
+  View,
+  Text,
+  Button,
+  StyleSheet,
+  PermissionsAndroid,
+} from "react-native";
 // import Geolocation from "react-native-geolocation-service";
 
 // const WeatherApp = () => {
@@ -128,3 +128,16 @@
 // });
 
 // export default WeatherApp;
+
+
+import React from 'react'
+
+const Weather = () => {
+  return (
+      <View>
+          <Text>Weather app</Text>
+    </View>
+  )
+}
+
+export default Weather

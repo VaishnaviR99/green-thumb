@@ -1,27 +1,25 @@
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
-import { Ionicons } from "@expo/vector-icons";
-import Home from "../screens/Home";
-import Prices from "../screens/Prices";
-import Post from "../screens/Post";
 import Profile from "../screens/Profile";
 
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+
+import HomeRoutes from "./HomeRoutes";
+import PriceRoute from "./PriceRoute";
+import PostRoutes from "./PostRoutes";
 const Tab = createMaterialBottomTabNavigator();
 
-const BottomTab = () => {
+const BottomTab = ({navigation}) => {
   return (
     <Tab.Navigator
       initialRouteName="Home"
       activeColor="#7ed957"
       shifting={true}
-
-      //barStyle={{ backgroundColor: "#f7f3de" }}
+      //barStyle={{ backgroundColor: "rgba(0, 255, 0, 0.04)" }}
     >
       <Tab.Screen
         name="Home"
-        component={Home}
+        component={HomeRoutes}
         options={{
           tabBarLabel: "Home",
           tabBarIcon: ({ color }) => (
@@ -30,8 +28,8 @@ const BottomTab = () => {
         }}
       />
       <Tab.Screen
-        name="Prices"
-        component={Prices}
+        name=" Price"
+        component={PriceRoute}
         options={{
           tabBarLabel: "Prices",
           tabBarIcon: ({ color }) => (
@@ -41,7 +39,7 @@ const BottomTab = () => {
       />
       <Tab.Screen
         name="Post"
-        component={Post}
+        component={PostRoutes}
         options={{
           tabBarLabel: "Post",
           tabBarIcon: ({ color }) => (

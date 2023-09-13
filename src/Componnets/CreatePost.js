@@ -1,46 +1,88 @@
 import React, { useState } from "react";
-import {
-  View,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  StyleSheet,
-} from "react-native";
+import { View, Button, Image, StyleSheet } from "react-native";
+//import ImagePicker from "react-native-image-crop-picker";
 
-const CreatePost = ({ navigation }) => {
-  const [caption, setCaption] = useState("");
+const CreatePost = () => {
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [width, setWidth] = useState(350);
+  const [height, setHeight] = useState(500);
 
-  const handleCreatePost = () => {
-    navigation.goBack();
+  const handleImagePicker = () => {
+    // ImagePicker.openPicker({
+    //   width,
+    //   height,
+    //   cropping: true,
+    // })
+    //   .then((image) => {
+    //     setSelectedImage(image.path);
+    //     setHeight(height);
+    //     setWidth(width);
+    //     console.log(image);
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
+  };
+
+  const handleCameraPicker = () => {
+    ImagePicker.openCamera({
+      width,
+      height,
+      cropping: true,
+    })
+      .then((image) => {
+        setSelectedImage(image.path);
+        setHeight(height);
+        setWidth(width);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const handleCropImage = () => {
+    if (selectedImage) {
+      ImagePicker.openCropper({
+        path: selectedImage,
+        width,
+        height,
+        cropping: true,
+        cropperCircleOverlay: false, // Set to true if you want a circular crop
+        freeStyleCropEnabled: true,
+      })
+        .then((image) => {
+          setSelectedImage(image.path);
+          setHeight(250);
+          setWidth(170);
+          console.log(image);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
   };
 
   return (
-    <View style={styles.container}>
-      <Text>Create New Post</Text>
-      <TextInput
-        placeholder="Enter caption"
-        value={caption}
-        onChangeText={(text) => setCaption(text)}
-      />
-      <TouchableOpacity style={styles.createPostButton}>
-        <Text>Save</Text>
-      </TouchableOpacity>
+    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+      {selectedImage && (
+        <Image
+          source={{ uri: selectedImage }}
+          style={{ width: width, height: height, marginVertical: 20 }}
+        />
+      )}
+      <View style={{ marginTop: 20 }}>
+        <Button title="Choose from Gallery" onPress={handleImagePicker} />
+      </View>
+      <View style={{ marginTop: 20 }}>
+        <Button title="Take a Photo" onPress={handleCameraPicker} />
+      </View>
+      <View style={{ marginTop: 20, marginBottom: 50 }}>
+        {selectedImage && (
+          <Button title="Crop Image" onPress={handleCropImage} />
+        )}
+      </View>
     </View>
   );
 };
 
 export default CreatePost;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-
-  createPostButton: {
-    backgroundColor: "#7ed957",
-    padding: 8,
-    borderRadius: 8,
-  },
-});

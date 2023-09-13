@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, StatusBar, Image } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { NavigationContainer } from "@react-navigation/native";
+import BottomNavigation from "../Route/BottomNavigation";
 import Welcome from "../Auth/Welcome";
 import Login from "../screens/Login";
 import Signup from "../Componnets/Signup";
@@ -14,7 +14,7 @@ export default function Route() {
   return (
     <>
       <StatusBar />
-      <Stack.Navigator>
+      <Stack.Navigator initialRouteName="HomeNavigation">
         <Stack.Screen
           name="Welcome"
           component={Welcome}
@@ -34,6 +34,11 @@ export default function Route() {
         <Stack.Screen
           name="Otp"
           component={OtpVerification}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="HomeNavigation"
+          component={BottomNavigation}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
