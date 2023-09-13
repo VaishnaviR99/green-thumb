@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -10,7 +10,18 @@ import {
 import Avatarcomp from "../Componnets/Avatar";
 import PostTextContent from "../Componnets/TextComponent";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-const Profile = () => {
+
+const Profile = ({ route }) => {
+  const [posts, setPosts] = useState(user.posts);
+  const [userPost, setUserPost] = useState({});
+
+  //const { userPost } = route.params;
+  useEffect(() => {
+    if (route.params && route.params.userPost) {
+      setUserPost(route.params.userPost);
+      setPosts([...posts, route.params.userPost]);
+    }
+  }, [route.params]);
   return (
     <View style={styles.container}>
       <View style={styles.profileInfo}>
@@ -25,8 +36,10 @@ const Profile = () => {
       </View>
       <View style={styles.divider} />
       <FlatList
-        data={user.posts}
+        extraData={userPost}
+        data={posts}
         keyExtractor={(item) => item.id.toString()}
+        inverted
         renderItem={({ item }) => (
           <View style={styles.postContainer}>
             <View>
@@ -130,6 +143,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     marginBottom: 15,
+  },
+  likeAnimation: {
+    position: "absolute",
   },
 });
 

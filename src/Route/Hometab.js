@@ -1,20 +1,25 @@
 import React from "react";
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet, Text, ScrollView } from "react-native";
 import Category from "../Componnets/Category";
 import CustomerCare from "../Componnets/CustomerCare";
+import Weather from "../Componnets/Weather";
+import WeatherApp from "../Componnets/Weather";
 
 const Hometab = ({ navigation }) => {
   return (
-    <View style={styles.container}>
-      <View style={{ flex: 1 }}>
-        <Text style={styles.text}>Categories</Text>
-        <Category data={data} navigation={navigation} />
-      </View>
+    <ScrollView>
+      <View style={styles.container}>
+        <View style={{ flex: 1 }}>
+          <Text style={styles.text}>Categories</Text>
+          <Category data={data} navigation={navigation} />
+        </View>
 
-      <View>
-        <Text style={styles.text}>weather forcaste</Text>
+        <View>
+          <Text style={styles.text}>weather forcaste</Text>
+          <Weather />
+        </View>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 

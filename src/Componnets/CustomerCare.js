@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import call from "react-native-phone-call";
-import { View, Text, Button, PermissionsAndroid, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  Button,
+  PermissionsAndroid,
+  TouchableOpacity,
+} from "react-native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
 const CustomerCare = () => {
@@ -11,10 +17,8 @@ const CustomerCare = () => {
       const granted = await PermissionsAndroid.request(
         PermissionsAndroid.PERMISSIONS.CAMERA,
         {
-          title: "Green Thumb App Call Permission",
-          message:
-            "Green Thumb App needs access to your calls " +
-            "so you can connect with customer care.",
+          title: "Phone Call Permission",
+          message: "App needs access to phone call ",
           buttonNeutral: "Ask Me Later",
           buttonNegative: "Cancel",
           buttonPositive: "OK",
@@ -37,10 +41,7 @@ const CustomerCare = () => {
   };
   return (
     <View style={{ justifyContent: "center", alignItems: "center" }}>
-
-      <TouchableOpacity
-        onPress={RequestCall}
-      >
+      <TouchableOpacity onPress={RequestCall}>
         <MaterialCommunityIcons
           name="phone"
           color="green"
@@ -56,8 +57,6 @@ const CustomerCare = () => {
           }}
         />
       </TouchableOpacity>
-
-      
     </View>
   );
 };
