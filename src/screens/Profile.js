@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import * as Animatable from "react-native-animatable";
 import {
   View,
   Text,
@@ -14,6 +15,7 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 const Profile = ({ route }) => {
   const [posts, setPosts] = useState(user.posts);
   const [userPost, setUserPost] = useState({});
+ 
 
   //const { userPost } = route.params;
   useEffect(() => {
@@ -45,12 +47,14 @@ const Profile = ({ route }) => {
             <View>
               <Image source={item.image} style={styles.postImage} />
               <View style={styles.buttonContainer}>
-                <TouchableOpacity style={styles.button}>
-                  <MaterialCommunityIcons
-                    name="thumb-up"
-                    size={22}
-                    color="#7ed957"
-                  />
+                <TouchableOpacity style={styles.button} >
+                 
+                    <MaterialCommunityIcons
+                      name="thumb-up"
+                      size={22}
+                      color="#7ed957"
+                    />
+               
                   <Text style={styles.buttonText}>{item.likes}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.button}>

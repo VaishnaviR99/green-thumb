@@ -1,61 +1,65 @@
-import React, { createContext, useContext, useReducer, useEffect } from "react";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-
+import React, { createContext, useContext, useState } from "react";
 
 const CartContext = createContext();
 
-const cartReducer = (state, action) => {
-  switch (action.type) {
-    case "ADD_TO_CART":
-      const updatedCart = [...state, action.payload];
-     
-      AsyncStorage.setItem("cart", JSON.stringify(updatedCart));
-      return updatedCart;
-    case "REMOVE_FROM_CART":
-      const filteredCart = state.filter(
-        (item) => item.id !== action.payload.id
-      );
-      
-      AsyncStorage.setItem("cart", JSON.stringify(filteredCart));
-      return filteredCart;
-    case "CLEAR_CART":
-      
-      AsyncStorage.removeItem("cart");
-      return [];
-    default:
-      return state;
-  }
+export const useCart = () => {
+  return useContext(CartContext);
 };
 
-
 export const CartProvider = ({ children }) => {
-  const [cart, dispatch] = useReducer(cartReducer, []);
+  const [cartItems, setCartItems] = useState([]);
 
- 
-  useEffect(() => {
-    const loadCartData = async () => {
-      try {
-        const savedCartData = await AsyncStorage.getItem("cart");
-        if (savedCartData !== null) {
-          dispatch({ type: "CLEAR_CART" }); 
-          const parsedCartData = JSON.parse(savedCartData);
-          dispatch({ type: "ADD_TO_CART", payload: parsedCartData });
-        }
-      } catch (error) {
-        console.error("Error loading cart data from AsyncStorage:", error);
+  const addToCart = (product) => {
+    const existingItem = cartItems.find((item) => item.id === product.id);
+
+    if (existingItem) {
+      existingItem.quantity += 1;
+      setCartItems([...cartItems]);
+    } else {
+      setCartItems([...cartItems, { ...product, quantity: 1 }]);
+    }
+  };
+
+  const removeFromCart = (productId) => {
+    const updatedCart = cartItems.filter((item) => item.id !== productId);
+    setCartItems(updatedCart);
+  };
+
+  const decreaseQuantity = (productId) => {
+    const updatedCart = cartItems.map((item) => {
+      if (item.id === productId && item.quantity > 1) {
+        item.quantity -= 1;
       }
+      return item;
+    });
+    setCartItems(updatedCart);
+  };
+
+  const increaseQuantity = (productId) => {
+    const updatedCart = cartItems.map((item) => {
+      if (item.id === productId) {
+        item.quantity += 1;
+      }
+      return item;
+    });
+    setCartItems(updatedCart);
+    };
+    const clearCart = () => {
+      setCartItems([]);
     };
 
-    loadCartData();
-  }, []);
-
- 
-
   return (
-    <CartContext.Provider value={{ cart, dispatch }}>
+    <CartContext.Provider
+      value={{
+        cartItems,
+        addToCart,
+        removeFromCart,
+        decreaseQuantity,
+        increaseQuantity,
+        clearCart,
+      }}
+    >
       {children}
     </CartContext.Provider>
   );
 };
-
-

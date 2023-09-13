@@ -62,16 +62,7 @@ const ViewArticle = ({ route }) => {
   );
 };
 
-// const ArticleCard = ({ blogPost }) => {
-//   console.log(blogPost, "viewarticle");
-//   return (
-//     <View style={{ flex: 1 }}>
-//       <Text>Blog Post ID: {blogPost.id}</Text>
-//       <Text>Username: {blogPost.username}</Text>
-//       <Text>Text: {blogPost.text}</Text>
-//     </View>
-//   );
-// };
+
 export default ViewArticle;
 
 const styles = StyleSheet.create({

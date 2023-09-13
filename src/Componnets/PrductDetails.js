@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -7,10 +7,29 @@ import {
   TouchableOpacity,
   ScrollView,
 } from "react-native";
+import { useCart } from "../context/Context";
 
 const ProductDetails = ({ route, navigation }) => {
+  const [cartItems, setCartItems] = useState([]);
+  const [isAddingToCart, setIsAddingToCart] = useState(false);
+ const { addToCart } = useCart(); 
   const { product } = route.params;
 
+  // const addToCart = (product) => {
+  //   setCartItems([...cartItems, product]);
+  // };
+  const navigateToCart = () => {
+     addToCart(product);
+    navigation.navigate("Cart", { product });
+  };
+  
+
+  const handleAddToCart = () => {
+    addToCart(product);
+     setIsAddingToCart(true);
+  };
+
+ 
   return (
     <View style={styles.container}>
       <ScrollView>
@@ -19,10 +38,25 @@ const ProductDetails = ({ route, navigation }) => {
         <Text style={styles.productPrice}>Price: ₹{product.price}</Text>
         <Text style={styles.productDescription}>{product.description}</Text>
 
-        <TouchableOpacity style={styles.addToCartButton}>
-          <Text style={styles.buttonText}>Add to Cart</Text>
+        <TouchableOpacity
+          style={[
+            styles.addToCartButton,
+            isAddingToCart ? styles.disabledButton : null,
+          ]}
+          onPress={handleAddToCart}
+          disabled={isAddingToCart}
+        >
+          <Text style={styles.buttonText}>
+            {isAddingToCart ? "Added to Cart..." : "Add to Cart"}
+          </Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.buyNowButton}>
+        <TouchableOpacity
+          style={styles.buyNowButton}
+          onPress={() => {
+            addToCart(product);
+            navigateToCart();
+          }}
+        >
           <Text style={styles.buttonText}>Buy Now</Text>
         </TouchableOpacity>
       </ScrollView>
@@ -70,6 +104,9 @@ const styles = StyleSheet.create({
     color: "white",
     fontWeight: "bold",
     textAlign: "center",
+  },
+  disabledButton: {
+    backgroundColor: "gray",
   },
 });
 

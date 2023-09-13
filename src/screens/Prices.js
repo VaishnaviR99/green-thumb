@@ -32,11 +32,14 @@ const ProductList = ({ product }) => {
 
 const Prices = () => {
   return (
-    <ScrollView style={styles.container}>
-      {data.data.map((product, index) => (
-        <ProductList key={index} product={product} />
-      ))}
-    </ScrollView>
+    <FlatList
+      style={styles.container}
+      data={data.data}
+      keyExtractor={(item, index) => index.toString()}
+      renderItem={({ item }) => (
+        <ProductList key={item.product} product={item} />
+      )}
+    />
   );
 };
 

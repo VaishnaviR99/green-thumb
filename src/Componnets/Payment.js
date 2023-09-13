@@ -1,18 +1,40 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import * as Animatable from "react-native-animatable";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import { useCart } from "../context/Context";
 
-const Payment = ({ navigation }) => {
-  const handleRedirect = () => {
-    // Navigate to the home screen after payment confirmation
-    navigation.navigate("Home");
-  };
+const Payment = ({ navigation, route }) => {
+  const { totalAmount } = route.params;
+  const [paymentComplete, setPaymentComplete] = useState(false);
+
+  const { clearCart } = useCart();
+  useEffect(() => {
+    setTimeout(() => {
+      setPaymentComplete(true);
+      clearCart();
+    }, 900);
+    setTimeout(() => {
+      navigation.navigate("homee");
+    }, 2000);
+  }, [navigation]);
 
   return (
     <View style={styles.container}>
-      <Text style={styles.message}>Payment Successful!</Text>
-      <TouchableOpacity onPress={handleRedirect} style={styles.button}>
-        <Text style={styles.buttonText}>Back to Home</Text>
-      </TouchableOpacity>
+      {paymentComplete ? (
+        <Animatable.View animation="rubberBand" style={styles.successContainer}>
+          <MaterialCommunityIcons
+            name="check-circle"
+            size={80}
+            color="#7ed957"
+          />
+          <Text style={styles.successText}>Payment Successful</Text>
+        </Animatable.View>
+      ) : (
+        <Animatable.View animation="fadeIn" style={styles.pendingContainer}>
+          <Text style={styles.amount}>₹{totalAmount}</Text>
+        </Animatable.View>
+      )}
     </View>
   );
 };
@@ -20,22 +42,25 @@ const Payment = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
     justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#fff",
   },
-  message: {
+  pendingContainer: {
+    alignItems: "center",
+  },
+  amount: {
+    fontSize: 32,
+    fontWeight: "bold",
+  },
+  successContainer: {
+    alignItems: "center",
+  },
+  successText: {
     fontSize: 24,
     fontWeight: "bold",
-    marginBottom: 20,
-  },
-  button: {
-    backgroundColor: "blue",
-    padding: 10,
-    borderRadius: 5,
-  },
-  buttonText: {
-    color: "white",
-    fontWeight: "bold",
+    color: "#7ed957",
+    marginTop: 16,
   },
 });
 
