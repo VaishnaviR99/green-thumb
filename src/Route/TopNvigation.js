@@ -1,20 +1,11 @@
 import React from "react";
 import {
-  View,
-  Text,
-  Image,
-  TouchableOpacity,
   StyleSheet,
-  FlatList,
-  StatusBar,
+ 
 } from "react-native";
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import PostTab from "../Route/PostTab";
-import CreatePost from "../Componnets/CreatePost";
+
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-import Articles from "../Componnets/Article";
-import ViewArticle from "../Componnets/ViewArticle";
+
 const Tab = createMaterialTopTabNavigator();
 import FeedRoutes from "./FeedRoutes";
 import ArticleRoutes from "./ArticleRoutes";

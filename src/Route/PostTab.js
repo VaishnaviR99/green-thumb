@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import PostTextContent from "../Componnets/TextComponent";
+
 const PostTab = ({ navigation }) => {
   return (
     <View style={styles.container}>
@@ -28,6 +29,7 @@ const PostTab = ({ navigation }) => {
 };
 
 const Postt = ({ post, index }) => {
+  const [liked, setLiked] = useState(true);
   return (
     <View style={styles.card}>
       <View style={{ flexDirection: "row", marginBottom: 15 }}>
@@ -44,9 +46,14 @@ const Postt = ({ post, index }) => {
       />
 
       <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => setLiked(!liked)}
+        >
           <MaterialCommunityIcons name="thumb-up" size={24} color="#7ed957" />
-          <Text style={styles.buttonText}>{post.likes}</Text>
+          <Text style={styles.buttonText}>
+            {liked ? post.likes : post.likes + 1}
+          </Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.button}>
           <MaterialCommunityIcons name="text" size={24} color="#7ed957" />

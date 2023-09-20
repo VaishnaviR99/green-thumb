@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import * as Animatable from "react-native-animatable";
+
 import {
   View,
   Text,
@@ -15,7 +15,7 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 const Profile = ({ route }) => {
   const [posts, setPosts] = useState(user.posts);
   const [userPost, setUserPost] = useState({});
- 
+  const [liked, setLiked] = useState(true);
 
   //const { userPost } = route.params;
   useEffect(() => {
@@ -29,7 +29,7 @@ const Profile = ({ route }) => {
       <View style={styles.profileInfo}>
         <View>
           {/* <Image source={user.profile} style={styles.profileImage} /> */}
-          <Avatarcomp size={90} />
+          <Avatarcomp size={90} color={ "white"} />
         </View>
         <View>
           <Text style={styles.username}>{user.username}</Text>
@@ -47,7 +47,7 @@ const Profile = ({ route }) => {
             <View>
               <Image source={item.image} style={styles.postImage} />
               <View style={styles.buttonContainer}>
-                <TouchableOpacity style={styles.button} >
+                <TouchableOpacity style={styles.button} onPress={()=>setLiked(!liked)} >
                  
                     <MaterialCommunityIcons
                       name="thumb-up"
@@ -55,7 +55,7 @@ const Profile = ({ route }) => {
                       color="#7ed957"
                     />
                
-                  <Text style={styles.buttonText}>{item.likes}</Text>
+                  <Text style={styles.buttonText}>{liked? item.likes:((item.likes)+1)}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.button}>
                   <MaterialCommunityIcons
@@ -84,7 +84,22 @@ const styles = StyleSheet.create({
   profileInfo: {
     marginTop: 25,
     flexDirection: "row",
-    justifyContent: "space-evenly",
+    justifyContent: "space-between",
+    backgroundColor: "#7ed957",
+    padding: 50,
+    //borderTopRightRadius: 150,
+    //borderBottomLeftRadius: 150,
+    borderTopEndRadius: 100,
+    //borderBottomEndRadius:500,
+    borderBottomStartRadius: 100,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    shadowColor: "red",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,
+    elevation: 5,
   },
   profileImage: {
     width: 100,
@@ -95,9 +110,12 @@ const styles = StyleSheet.create({
   username: {
     fontSize: 24,
     fontWeight: "bold",
+    color: "white",
   },
   email: {
     fontSize: 16,
+    color: "white",
+    marginTop: 15,
   },
   divider: {
     height: 1,

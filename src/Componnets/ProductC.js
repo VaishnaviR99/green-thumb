@@ -1,4 +1,5 @@
-import React from "react";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import React,{useState} from "react";
 import {
   View,
   Text,
@@ -11,18 +12,31 @@ import {
 const CategoryProducts = ({ route, navigation }) => {
   const { category, data } = route.params;
   const products = data.products[category.name];
+  const [liked, setLiked] = useState(false)
 
   const renderItem = ({ item }) => (
-    <TouchableOpacity
-      style={styles.productCard}
-      onPress={() => {
-        navigation.navigate("ProductDetails", { product: item });
-      }}
-    >
-      <Image source={item.image} style={styles.productImage} />
-      <Text style={styles.productName}>{item.name}</Text>
-      <Text style={styles.productPrice}>Price: ₹{item.price}</Text>
-    </TouchableOpacity>
+    <View style={styles.productCard}>
+      <View style={styles.star} onPress={() => setLiked(!liked)}>
+       
+          <MaterialCommunityIcons
+            name="star"
+            size={32}
+            color={"gold"}
+        />
+        <Text></Text>
+       
+       
+      </View>
+      <TouchableOpacity
+        onPress={() => {
+          navigation.navigate("ProductDetails", { product: item });
+        }}
+      >
+        <Image source={item.image} style={styles.productImage} />
+        <Text style={styles.productName}>{item.name}</Text>
+        <Text style={styles.productPrice}>Price: ₹{item.price}</Text>
+      </TouchableOpacity>
+    </View>
   );
 
   return (
@@ -56,10 +70,11 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#ececec",
     borderRadius: 8,
-    width: "50%",
+    width: 180,
     padding: 16,
     marginVertical: 8,
     margin: 5,
+   
   },
   productImage: {
     width: "100%",
@@ -68,13 +83,18 @@ const styles = StyleSheet.create({
     borderRadius: 8,
   },
   productName: {
-    fontSize: 18,
+    fontSize: 12,
     fontWeight: "bold",
     marginVertical: 8,
   },
   productPrice: {
     fontSize: 16,
   },
+  star: {
+   position:"relative",
+    
+  }
+
 });
 
 export default CategoryProducts;

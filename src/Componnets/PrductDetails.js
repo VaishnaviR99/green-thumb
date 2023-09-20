@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   ScrollView,
 } from "react-native";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { useCart } from "../context/Context";
 
 const ProductDetails = ({ route, navigation }) => {
@@ -33,7 +34,13 @@ const ProductDetails = ({ route, navigation }) => {
   return (
     <View style={styles.container}>
       <ScrollView>
+        <View>
+          <TouchableOpacity>
+            
+          </TouchableOpacity>
+        </View>
         <Image source={product.image} style={styles.productImage} />
+       
         <Text style={styles.productName}>{product.name}</Text>
         <Text style={styles.productPrice}>Price: ₹{product.price}</Text>
         <Text style={styles.productDescription}>{product.description}</Text>

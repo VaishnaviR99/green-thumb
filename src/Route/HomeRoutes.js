@@ -28,6 +28,7 @@ const HomeRoutes = ({ navigation }) => {
   return (
     <Stack.Navigator
       screenOptions={{
+        
         headerRight: () => (
           <View>
             <MaterialCommunityIcons
